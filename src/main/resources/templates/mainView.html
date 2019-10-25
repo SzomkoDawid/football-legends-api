@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Strona główna</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/mainView.css}"/>
+</head>
+<body>
+<h1>Zgadnij kim jestem!</h1>
+<div class="images">
+    <th:block th:each="list : ${footballers}">
+        <img id="firstPicture" th:attr="src = ${list.pictureUrl}" th:height="97" th:width="97">
+    </th:block>
+</div>
+<h2>Uważasz, że dobrze znasz się na futbolu? Sprawdź się i rozpoznaj wszystkie ikony piłki nożnej!</h2>
+<center>
+    <a href="/quizPage">
+<button type="submit" class="button button1">Kliknij aby przejść do quizu</button>
+    </a>
+</center>
+</body>
+</html>
