@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FootballerRepository extends JpaRepository<Footballer, Long> {
+    Footballer findByName(String name);
 }

@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Quiz</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Buttons and alerts</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-alert.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/mainView.css}"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#correct').click(function (e) {
+                e.preventDefault()
+                $('#message').html('<div class="alert alert-success fade in">' +
+                    '<button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true"></button>Poprawna odpowiedź!</div>');
+            })
+        });
+        $(document).ready(function () {
+            $('#incorrect').click(function (e) {
+                e.preventDefault()
+                $('#message').html('<div class="alert alert-danger fade in">' +
+                    '<button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true"></button>Nieprawidłowa odpowiedź :(</div>');
+            })
+        });
+    </script>
 </head>
-<body>
-
+<div class="container">
+    <th:block th:each="ftb : ${footballers}">
+        <center>
+            <img th:attr="src=${ftb.pictureUrl}" height="400" width="400"><img>
+            <p>
+            <form method="post">
+            <button type="button" class="btn btn-info" id="correct"><div class="first" th:text="${ftb.answer.firstAnswer}"></div></button>
+                <button type="button" class="btn btn-info" id="incorrect"><div class="second" th:text="${ftb.answer.secondAnswer}"></div></button>
+            </form>
+            </p>
+            <div id="message"></div>
+        </center>
+    </th:block>
+</div>
 </body>
 </html>

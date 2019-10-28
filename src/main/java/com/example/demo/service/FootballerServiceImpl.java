@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Answer;
 import com.example.demo.model.Footballer;
 import com.example.demo.repository.AnswerRepository;
 import com.example.demo.repository.FootballerRepository;
@@ -19,7 +20,7 @@ public class FootballerServiceImpl implements FootballerService {
     private final AnswerRepository answerRepository;
 
     @Override
-    public List<Footballer> findall() {
+    public List<Footballer> findAll() {
         return footballerRepository.findAll();
     }
     @Override
@@ -36,4 +37,10 @@ public class FootballerServiceImpl implements FootballerService {
     public void deleteById(Long id) {
         footballerRepository.deleteById(id);
     }
+
+    @Override
+    public Footballer findByName(String name) {
+       return footballerRepository.findByName(name);
+    }
+
 }
