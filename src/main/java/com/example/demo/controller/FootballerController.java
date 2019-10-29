@@ -24,7 +24,7 @@ public class FootballerController {
 
     @GetMapping
     public ResponseEntity<List<Footballer>> findAllFootballers(){
-        return ResponseEntity.ok(footballerService.findall());
+        return ResponseEntity.ok(footballerService.findAll());
     }
     @GetMapping("/{footballerId}")
     public ResponseEntity<Footballer> footballerById(@PathVariable Long footballerId){

@@ -38,7 +38,9 @@ public class ViewController {
     }
     @RequestMapping(value = "/quizPage", method = RequestMethod.GET)
     public String quizPage(Model model){
-        model.addAttribute("footballers", footballerService.findAll().get(0));
+        List<Footballer> footballers = footballerService.findAll();
+        Collections.shuffle(footballers);
+        model.addAttribute("footballers", footballers.get(0));
         return "quizPage";
     }
 }

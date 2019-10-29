@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-alert.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/mainView.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/quizPage.css}"/>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#correct').click(function (e) {
@@ -26,19 +25,28 @@
         });
     </script>
 </head>
+<body>
 <div class="container">
     <th:block th:each="ftb : ${footballers}">
         <center>
-            <img th:attr="src=${ftb.pictureUrl}" height="400" width="400"><img>
+            <img class="pictures" th:attr="src=${ftb.pictureUrl}"><img>
             <p>
             <form method="post">
-            <button type="button" class="btn btn-info" id="correct"><div class="first" th:text="${ftb.answer.firstAnswer}"></div></button>
-                <button type="button" class="btn btn-info" id="incorrect"><div class="second" th:text="${ftb.answer.secondAnswer}"></div></button>
+            <div th:if="${ftb.name.equals(ftb.answer.firstAnswer)} and ${!ftb.name.equals(ftb.answer.secondAnswer)}">
+                <button type="button" class="btn btn-info" id="correct"><div th:text="${ftb.answer.firstAnswer}"></div></button>
+                <button type="button" class="btn btn-info" id="incorrect"><div th:text="${ftb.answer.secondAnswer}"></div></button>
+            </div>
+            <!-- ELSE -->
+            <div th:if="${!ftb.name.equals(ftb.answer.firstAnswer)} and ${ftb.name.equals(ftb.answer.secondAnswer)}">
+                <button type="button" class="btn btn-info" id="incorrect"><div th:text="${ftb.answer.firstAnswer}"></div></button>
+                <button type="button" class="btn btn-info" id="correct"><div th:text="${ftb.answer.secondAnswer}"></div></button>
+            </div>
             </form>
             </p>
             <div id="message"></div>
         </center>
     </th:block>
+    <!--<div class="first" th:text="${ftb.answer.firstAnswer}"></div>-->
 </div>
 </body>
 </html>
