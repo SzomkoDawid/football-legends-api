@@ -8,29 +8,33 @@
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-alert.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" th:href="@{/css/quizPage.css}"/>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#correct').click(function (e) {
-                e.preventDefault()
-                $('#message').html('<div class="alert alert-success fade in">' +
-                    '<button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true"></button>Prawidłowa odpowiedź!</div>');
-            })
-        });
-        $(document).ready(function () {
-            $('#incorrect').click(function (e) {
-                e.preventDefault()
-                $('#message').html('<div class="alert alert-danger fade in">' +
-                    '<button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true"></button>Nieprawidłowa odpowiedź :(</div>');
-            })
-        });
-    </script>
 </head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#correct').click(function (e) {
+            e.preventDefault()
+            $('#incorrect').prop('disabled', true);
+            $('#correct').prop('disabled', true);
+            $('#message').html('<div class="alert alert-success fade in">' +
+                '<button type="button" class="close close-alert" data-dismiss="alert"></button>Prawidłowa odpowiedź!</div>');
+            e.preventDefault()
+        })
+    });
+    $(document).ready(function () {
+        $('#incorrect').click(function (e) {
+            e.preventDefault()
+            $('#incorrect').prop('disabled', true);
+            $('#correct').prop('disabled', true);
+            $('#message').html('<div class="alert alert-danger fade in">' +
+                '<button type="button" class="close close-alert" data-dismiss="alert" ></button>Nieprawidłowa odpowiedź :(</div>');
+        })
+    });
+</script>
 <body>
 <div class="container">
     <th:block th:each="ftb : ${footballers}">
         <center>
             <div>
-                <a href="/quizPage" class="previous round">&#8249;</a>
             <img class="pictures" th:attr="src=${ftb.pictureUrl}"><img>
                 <a href="/quizPage" class="next round">&#8250;</a>
             </div>
@@ -40,7 +44,6 @@
                 <button type="button" class="btn btn-info" id="correct"><div th:text="${ftb.answer.firstAnswer}"></div></button>
                 <button type="button" class="btn btn-info" id="incorrect"><div th:text="${ftb.answer.secondAnswer}"></div></button>
             </div>
-            <!-- ELSE -->
             <div th:if="${!ftb.name.equals(ftb.answer.firstAnswer)} and ${ftb.name.equals(ftb.answer.secondAnswer)}">
                 <button type="button" class="btn btn-info" id="incorrect"><div th:text="${ftb.answer.firstAnswer}"></div></button>
                 <button type="button" class="btn btn-info" id="correct"><div th:text="${ftb.answer.secondAnswer}"></div></button>
@@ -50,7 +53,6 @@
             <div id="message"></div>
         </center>
     </th:block>
-    <!--<div class="first" th:text="${ftb.answer.firstAnswer}"></div>-->
 </div>
 </body>
 </html>
