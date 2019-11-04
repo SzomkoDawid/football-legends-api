@@ -49,13 +49,13 @@ public class FootballerController {
     @PatchMapping("/{footballerId}")
     public ResponseEntity<Footballer> update(@PathVariable Long footballerId,
                                              @RequestBody Footballer updatingFootballer) {
-        Optional<Footballer> stockOptional = footballerService.findById(footballerId);
-        if (!stockOptional.isPresent()) {
+        Optional<Footballer> footballerOptional = footballerService.findById(footballerId);
+        if (!footballerOptional.isPresent()) {
             log.error("Footballer id " + footballerId + "   not exist");
             ResponseEntity.badRequest().build();
         }
 
-        Footballer footballer = stockOptional.get();
+        Footballer footballer = footballerOptional.get();
         if (!StringUtils.isEmpty(updatingFootballer.getName())) footballer.setName(updatingFootballer.getName());
         if (!StringUtils.isEmpty(updatingFootballer.getPictureUrl())) footballer.setPictureUrl(updatingFootballer.getPictureUrl());
         if (!Objects.isNull(updatingFootballer.getAnswer())) footballer.setAnswer(updatingFootballer.getAnswer());

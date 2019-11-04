@@ -29,4 +29,5 @@ public class Footballer extends ModelAudit {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "answer_id", referencedColumnName = "id", nullable = false)
     private Answer answer;
+
 }

@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Footballer;
-import com.example.demo.service.AnswerService;
 import com.example.demo.service.FootballerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 public class ViewController {
 
     private final FootballerService footballerService;
-    private final AnswerService answerService;
 
     @RequestMapping(value = "mainView", method = RequestMethod.GET)
     public String mainView(Model model) {

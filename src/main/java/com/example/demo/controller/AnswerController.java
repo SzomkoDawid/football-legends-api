@@ -32,9 +32,10 @@ public class AnswerController {
     @PatchMapping("/{answerId}")
     public ResponseEntity<Answer> update(@PathVariable Long answerId,
                                              @RequestBody Answer updatingAnswer) {
+
         Optional<Answer> answerOptional = answerService.findById(answerId);
         if (!answerOptional.isPresent()) {
-            log.error("Answer id " + answerId + "   not exist");
+            log.error("Footballer id " + answerId + "   not exist");
             ResponseEntity.badRequest().build();
         }
 
