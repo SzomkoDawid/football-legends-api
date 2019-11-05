@@ -4,6 +4,7 @@ import com.example.demo.model.Answer;
 import com.example.demo.repository.AnswerRepository;
 import com.example.demo.repository.FootballerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
