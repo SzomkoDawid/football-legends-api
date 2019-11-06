@@ -6,4 +6,5 @@ Hibernate/JDBC,
 JavaScript,
 HTML/Thymeleaf,
 CSS,
+Maven,
 Postman (to CRUD operations)
